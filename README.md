@@ -10,3 +10,84 @@ Incluye:
 - Panel de administración **PgAdmin4**
 - Contenedor de **Odoo 19**
 - Tarea de **respaldo automático** semanal (`pg_dump`)
+
+## Estructura del proyecto
+
+## odoo-docker
+┣ docker-compose.yml
+┣ odoo_data/ # Datos persistentes de Odoo
+┣ postgres_data/ # Datos persistentes de PostgreSQL
+┣ pgadmin_data/ # Configuración persistente de PgAdmin
+┣ backups/ # Copias de seguridad automáticas
+┗ README.md
+
+## ⚙️ Configuración de servicios
+
+### 🐘 Base de datos (PostgreSQL)
+- **Imagen:** `postgres:16`
+- **Usuario:** `odoo`
+- **Contraseña:** `odoo`
+- **Base de datos:** `postgres`
+- **Volumen:** `./postgres_data:/var/lib/postgresql/data`
+
+### 🧱 Odoo
+- **Imagen:** `odoo:19`
+- **Puerto:** `8069`
+- **Variables de entorno:**
+  - `HOST=db`
+  - `USER=odoo`
+  - `PASSWORD=odoo`
+- **Volumen:** `./odoo_data:/var/lib/odoo`
+
+### 🧰 PgAdmin4
+- **Imagen:** `dpage/pgadmin4`
+- **Puerto:** `5050`
+- **Usuario:** `admin@admin.com`
+- **Contraseña:** `admin`
+- **Volumen:** `./pgadmin_data:/var/lib/pgadmin`
+
+### 💾 Backup automático
+- **Imagen:** `postgres:16`
+- **Frecuencia:** Cada 7 días (604800 segundos)
+- **Destino:** `./backups`
+- **Archivo generado:**  
+  `odoo_backup_YYYY-MM-DD_HH-MM.dump`
+
+---
+
+## 🚀 Instrucciones de uso
+
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/tuusuario/odoo-docker.git
+   cd odoo-docker
+Inicia los contenedores:
+
+bash
+Copiar código
+docker-compose up -d
+Accede a las aplicaciones:
+
+Odoo: http://localhost:8069
+
+PgAdmin: http://localhost:5050
+
+Usuario: admin@admin.com
+
+Contraseña: admin
+
+(Opcional) Verifica los backups automáticos en la carpeta ./backups/
+
+🧠 Notas importantes
+Asegúrate de que los puertos 8069 y 5050 estén libres antes de iniciar.
+
+Todos los datos se guardan de forma persistente gracias a los volúmenes de Docker.
+
+Puedes modificar las contraseñas en el archivo docker-compose.yml si lo deseas.
+
+El servicio de backup usa el mismo usuario y contraseña de la base de datos principal (odoo).
+
+👤 Autor
+Creado con ❤️ por Kris Tello
+📧 krisfab.tello.30@gmail.com
+🌐 linkedin.com/in/kris-tello
