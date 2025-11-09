@@ -13,7 +13,7 @@ Incluye:
 
 ## Estructura del proyecto
 
-## odoo-docker
+# odoo-docker
 ┣ docker-compose.yml
 ┣ odoo_data/ # Datos persistentes de Odoo
 ┣ postgres_data/ # Datos persistentes de PostgreSQL
@@ -21,7 +21,7 @@ Incluye:
 ┣ backups/ # Copias de seguridad automáticas
 ┗ README.md
 
-## ⚙️ Configuración de servicios
+# Configuración de servicios
 
 ### 🐘 Base de datos (PostgreSQL)
 - **Imagen:** `postgres:16`
