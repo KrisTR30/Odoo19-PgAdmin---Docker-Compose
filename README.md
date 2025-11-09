@@ -13,12 +13,12 @@ Incluye:
 
 ## Estructura del proyecto
 
-# odoo-docker
-# ┣ docker-compose.yml
-# ┣ odoo_data/ # Datos persistentes de Odoo
-┣ postgres_data/ # Datos persistentes de PostgreSQL
-┣ pgadmin_data/ # Configuración persistente de PgAdmin
-┣ backups/ # Copias de seguridad automáticas
+odoo-docker <br>
+┣ docker-compose.yml <br>
+┣ odoo_data/ # Datos persistentes de Odoo <br>
+┣ postgres_data/ # Datos persistentes de PostgreSQL <br>
+┣ pgadmin_data/ # Configuración persistente de PgAdmin <br>
+┣ backups/ # Copias de seguridad automáticas <br>
 ┗ README.md
 
 # Configuración de servicios
