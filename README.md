@@ -92,7 +92,8 @@ Incluye:
       - ./backups:/backups
     entrypoint: >
   	  /bin/bash -c "
-	    echo '0 3 * * 0 root pg_dump -h db -U odoo -Fc postgres > /backups/odoo_backup_$(date +\%Y-\%m-\%d_\%H-\%M).dump && find /backups -type f -mtime +7 -delete' > /etc/cron.d/pg-backup &&
+	    echo '0 3 * * 0 root PGPASSWORD=odoo pg_dump -h db -U odoo -Fc postgres > /backups/odoo_backup_$(date +\%Y-\%m-\%d_\%H-\%M).dump && find /backups -type f -mtime +7 -delete' > /etc/cron.d/pg-backup &&
+  	# Cambiar contraseña del PGPASSWORD debe ser la misma que el del servicio db
 	    chmod 0644 /etc/cron.d/pg-backup &&
 	    crontab /etc/cron.d/pg-backup &&
 	    cron -f
@@ -126,7 +127,6 @@ Incluye:
   
 ### 💾 Backup automático
 - **Imagen:** `postgres:16`
-- **Frecuencia:** Cada 7 días (604800 segundos)
 - **Destino:** `./backups`
 - **Archivo generado:**  `odoo_backup_YYYY-MM-DD_HH-MM.dump`
   
