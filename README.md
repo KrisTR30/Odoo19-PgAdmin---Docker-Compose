@@ -91,10 +91,12 @@ Incluye:
     volumes:
       - ./backups:/backups
     entrypoint: >
-      bash -c "while true; do
-        pg_dump -h db -U odoo -Fc postgres > /backups/odoo_backup_$(date +%Y-%m-%d_%H-%M).dump;
-        sleep 604800; # Cambia el tiempo (segundos) según tus necesidades
-      done"
+  	  /bin/bash -c "
+	    echo '0 3 * * 0 root pg_dump -h db -U odoo -Fc postgres > /backups/odoo_backup_$(date +\%Y-\%m-\%d_\%H-\%M).dump && find /backups -type f -mtime +7 -delete' > /etc/cron.d/pg-backup &&
+	    chmod 0644 /etc/cron.d/pg-backup &&
+	    crontab /etc/cron.d/pg-backup &&
+	    cron -f
+	  "
     restart: always
   ```
 ## ⚙️Configuración de servicios
