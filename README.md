@@ -1,6 +1,6 @@
 # Odoo19 con PostgreSQL, PgAdmin y Backup Automático en Docker Compose usando Ubuntu/Ubuntu Sever
 
-Este proyecto despliega un entorno completo de **Odoo19** utilizando **Docker Compose**, junto con **PostgreSQL**, **PgAdmin4** y un **servicio de backup automático** semanal de la base de datos.
+Este proyecto despliega un entorno completo de **Odoo19** utilizando **Docker Compose**, junto con **PostgreSQL**, **PgAdmin4** y un **servicio de backup automático** diario de la base de datos (Elimina los backups con mas de 7 dias).
 
 ## Descripción del proyecto
 
